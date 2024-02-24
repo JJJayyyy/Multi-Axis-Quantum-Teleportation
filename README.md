@@ -7,7 +7,7 @@ Provide example circuits to simulate quantum teleportation with projective measu
 
 ## Guide to the examples
 
-[comment]: <> (For **Quantum Teleportation**, you may check [Y projective measurement].)
+For **Quantum Teleportation**, you may check [Y projective measurement](y_measurement.html).
 
 [comment]: <> (For **Superdense coding**, you may check.)
 
