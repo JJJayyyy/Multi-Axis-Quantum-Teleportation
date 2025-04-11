@@ -1,34 +1,55 @@
-<h2><p align="center">Quatum Teleportation with Projective Measurement</p></h2>
+# 📡 Quantum Teleportation with Projective Measurement
 
-#### What it is doing
+This repository demonstrates a generalized **quantum teleportation protocol** using different combinations of projective measurements beyond the standard $Z$-basis. Each notebook simulates and visualizes the teleportation process with a specific basis pair on the message $\ket{Msg}$ and ancilla qubits $\ket{A}$.
 
-Provide example circuits to simulate quantum teleportation with projective measurement.
+<p align="center"> <img src="assets/demo.gif" width="600"/> </p>
+
+---
+
+## 📁 Folder Structure
+
+```
+.
+├── assets/                      # Contains visual circuit diagrams
+│
+├── multi-axis QT/
+│   ├── 0_ZZ_measurement.ipynb  # Z,Z basis teleportation circuit
+│   ├── 1_YY_measurement.ipynb  # Y,Y basis teleportation circuit
+│   ├── ...                     # Other measurement combinations
+│   ├── basic_gates.py          # Gate and utility definitions
+│
+├── .gitignore
+└── README.md
+```
+
+Each Jupyter notebook contains:
+- Circuit diagram illustration
+- Symbolic computation of the quantum state evolution using `sympy`
+- Restoration operations applied by Bob based on measurement outcomes
+- Final validation of teleportation correctness
+
+---
+
+### Requirements
+
+- Python 3.8+
+- [SymPy](https://www.sympy.org/)
+
+Install the dependencies:
+```bash
+pip install sympy
+```
+
+---
+
+<!-- ## 📎 References
+
+- IBM Qiskit textbook: [Quantum Teleportation](https://qiskit.org/textbook/ch-algorithms/teleportation.html)
+- Nielsen & Chuang, *Quantum Computation and Quantum Information* -->
+
+<!-- --- -->
 
 
-## Guide to the examples
-
-For **Quantum Teleportation**, you may check:
- -  Y measurement on both ALice's qubits [Y Y](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B%22Z%5E-%C2%BD%22%2C%22Z%5E-%C2%BD%22%5D%2C%5B%22H%22%2C%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%5E%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22H%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
- - -Y measurement on both ALice's qubits [-Y -Y](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B%22Z%5E%C2%BD%22%2C%22Z%5E%C2%BD%22%5D%2C%5B%22H%22%2C%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%5E-%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22H%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
--  Y measurement (secret qubit), Z measurement (Alice's EPR particle) [Y Z](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B%22Z%5E-%C2%BD%22%5D%2C%5B%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Z%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%5E-%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
-- -Y measurement (secret qubit), Z measurement (Alice's EPR particle) [-Y Z](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B%22Z%5E%C2%BD%22%5D%2C%5B%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Z%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%5E%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
--  Z measurement (secret qubit), Y measurement (Alice's EPR particle) [Z Y](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B1%2C%22Z%5E-%C2%BD%22%5D%2C%5B1%2C%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C%22X%5E-%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
--  Z measurement (secret qubit), -Y measurement (Alice's EPR particle) [Z -Y](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B1%2C%22Z%5E%C2%BD%22%5D%2C%5B1%2C%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C%22X%5E%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
--  Y measurement (secret qubit), -Y measurement (Alice's EPR particle) [Y -Y](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B%22Z%5E-%C2%BD%22%2C%22Z%5E%C2%BD%22%5D%2C%5B%22H%22%2C%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%5E%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22H%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
-- -Y measurement (secret qubit), Y measurement (Alice's EPR particle) [-Y Y](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22H%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%5D%2C%5B%22~87lj%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22X%22%5D%2C%5B%22H%22%5D%2C%5B%22Z%5E%C2%BD%22%2C%22Z%5E-%C2%BD%22%5D%2C%5B%22H%22%2C%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22X%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%5E%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C%22H%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Bloch%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%5D%7D)
--  X measurement on both Alice's qubits [X X](https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5B1%2C%22~67cq%22%2C1%2C1%2C1%2C%22~87lj%22%2C%22~87lj%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22Y%22%5D%2C%5B1%2C1%2C1%2C1%2C1%2C%22X%5E%C2%BD%22%5D%2C%5B%22%E2%80%A6%22%2C%22%E2%80%A6%22%2C1%2C1%2C%22%E2%80%A6%22%2C%22Y%5E%C2%BD%22%5D%2C%5B1%2C1%2C1%2C1%2C1%2C%22H%22%2C%22~67cq%22%5D%2C%5B%22~87lj%22%2C1%2C1%2C1%2C1%2C%22Bloch%22%2C%22Bloch%22%5D%2C%5B%22Bloch%22%5D%2C%5B%22%E2%80%A2%22%2C%22Y%22%5D%2C%5B%22~67cq%22%5D%2C%5B%22H%22%2C%22H%22%5D%2C%5B%22Measure%22%2C%22Measure%22%5D%2C%5B1%2C1%2C%22~qon7%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~67cq%22%5D%2C%5B1%2C%22%E2%80%A2%22%2C1%2C1%2C%22Z%22%5D%2C%5B%22%E2%80%A2%22%2C1%2C1%2C1%2C%22X%22%5D%2C%5B1%2C1%2C1%2C1%2C%22H%22%5D%2C%5B1%2C1%2C1%2C1%2C%22Z%22%5D%2C%5B1%2C1%2C1%2C1%2C%22~f7c0%22%5D%5D%2C%22gates%22%3A%5B%7B%22id%22%3A%22~87lj%22%2C%22name%22%3A%22message%22%2C%22circuit%22%3A%7B%22cols%22%3A%5B%5B%22e%5E-iYt%22%5D%2C%5B%22X%5Et%22%5D%5D%7D%7D%2C%7B%22id%22%3A%22~f7c0%22%2C%22name%22%3A%22received%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%2C%7B%22id%22%3A%22~tsml%22%2C%22name%22%3A%22%3F%3F%22%2C%22matrix%22%3A%22%7B%7B1%2C0%7D%2C%7B0%2C1%7D%7D%22%7D%2C%7B%22id%22%3A%22~qock%22%2C%22name%22%3A%22H%7Bx-z%7D%22%2C%22matrix%22%3A%22%7B%7B%E2%88%9A%C2%BDi%2C-%E2%88%9A%C2%BDi%7D%2C%7B-%E2%88%9A%C2%BDi%2C-%E2%88%9A%C2%BDi%7D%7D%22%7D%2C%7B%22id%22%3A%22~slr5%22%2C%22name%22%3A%22H%7By-z%7D%22%2C%22matrix%22%3A%22%7B%7B%E2%88%9A%C2%BDi%2C-%E2%88%9A%C2%BD%7D%2C%7B%E2%88%9A%C2%BD%2C-%E2%88%9A%C2%BDi%7D%7D%22%7D%2C%7B%22id%22%3A%22~e9ll%22%2C%22name%22%3A%22H%7BX-Y%7D%22%2C%22matrix%22%3A%22%7B%7B0%2C%E2%88%9A%C2%BD-%E2%88%9A%C2%BDi%7D%2C%7B-%E2%88%9A%C2%BD-%E2%88%9A%C2%BDi%2C0%7D%7D%22%7D%2C%7B%22id%22%3A%22~f4qr%22%2C%22name%22%3A%22H%7BX%2BY%7D%22%2C%22matrix%22%3A%22%7B%7B0%2C-%E2%88%9A%C2%BD-%E2%88%9A%C2%BDi%7D%2C%7B%E2%88%9A%C2%BD-%E2%88%9A%C2%BDi%2C0%7D%7D%22%7D%2C%7B%22id%22%3A%22~67cq%22%2C%22name%22%3A%22H%7BY%2BZ%7D%22%2C%22matrix%22%3A%22%7B%7B-%E2%88%9A%C2%BDi%2C-%E2%88%9A%C2%BD%7D%2C%7B%E2%88%9A%C2%BD%2C%E2%88%9A%C2%BDi%7D%7D%22%7D%2C%7B%22id%22%3A%22~a9b6%22%2C%22name%22%3A%22-Y%22%2C%22matrix%22%3A%22%7B%7B0%2C1%7D%2C%7B-1%2C0%7D%7D%22%7D%2C%7B%22id%22%3A%22~ldrp%22%2C%22matrix%22%3A%22%7B%7B%E2%88%9A%C2%BD%2C-%E2%88%9A%C2%BDi%7D%2C%7B-%E2%88%9A%C2%BDi%2C%E2%88%9A%C2%BD%7D%7D%22%7D%2C%7B%22id%22%3A%22~8o5r%22%2C%22matrix%22%3A%22%7B%7B0.5338447%2B0.3605825i%2C-%E2%88%9A%E2%85%95-0.6204757i%7D%2C%7B0.6204757-%E2%88%9A%E2%85%95i%2C0.6204757-0.1732621i%7D%7D%22%7D%2C%7B%22id%22%3A%22~3gtu%22%2C%22matrix%22%3A%22%7B%7B%E2%88%9A%C2%BD%2C-%E2%88%9A%C2%BDi%7D%2C%7B-%E2%88%9A%C2%BD%2C-%E2%88%9A%C2%BDi%7D%7D%22%7D%2C%7B%22id%22%3A%22~dcso%22%2C%22name%22%3A%22message%22%2C%22matrix%22%3A%22%7B%7B1%2C0%2C0%2C0%7D%2C%7B0%2C1%2C0%2C0%7D%2C%7B0%2C0%2C1%2C0%7D%2C%7B0%2C0%2C0%2C1%7D%7D%22%7D%2C%7B%22id%22%3A%22~428v%22%2C%22name%22%3A%22encode%22%2C%22matrix%22%3A%22%7B%7B1%2C0%2C0%2C0%7D%2C%7B0%2C1%2C0%2C0%7D%2C%7B0%2C0%2C1%2C0%7D%2C%7B0%2C0%2C0%2C1%7D%7D%22%7D%2C%7B%22id%22%3A%22~qon7%22%2C%22name%22%3A%22send%22%2C%22matrix%22%3A%22%7B%7B1%2C0%2C0%2C0%7D%2C%7B0%2C1%2C0%2C0%7D%2C%7B0%2C0%2C1%2C0%7D%2C%7B0%2C0%2C0%2C1%7D%7D%22%7D%2C%7B%22id%22%3A%22~h95q%22%2C%22name%22%3A%22decode%22%2C%22matrix%22%3A%22%7B%7B1%2C0%2C0%2C0%7D%2C%7B0%2C1%2C0%2C0%7D%2C%7B0%2C0%2C1%2C0%7D%2C%7B0%2C0%2C0%2C1%7D%7D%22%7D%5D%2C%22init%22%3A%5B0%2C0%2C1%5D%7D), requires alternate H’ entanglement from [Secret Superposition Protocols](https://github.com/JJJayyyy/Quantum-Teleportation-with-projective-measurement/assets/60277173/272e2891-ff04-46cd-b897-243c79a3f7c6).
-
-
-[comment]: <> (For **Superdense coding**, you may check.)
-
-## Files
-
-| Folder      | Description |
-| ----------- | ----------- |
-| QT   | Protocol examples for quantum teleportation  |
-| SDC  | Protocol examples for superdence coding |
-
-
-## Contact
+## 📬 Contact
 
 Junyao Zhang [jz420@duke.edu](mailto:jz420@duke.edu)
