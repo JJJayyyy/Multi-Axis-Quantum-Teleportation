@@ -1,6 +1,6 @@
-# 📡 Quantum Teleportation with Projective Measurement
+# 📡 Multi-Axis Quantum Teleportation
 
-This repository demonstrates a generalized **quantum teleportation protocol** using different combinations of projective measurements beyond the standard $Z$-basis. Each notebook simulates and visualizes the teleportation process with a specific basis pair on the message $\ket{Msg}$ and ancilla qubits $\ket{A}$.
+This repository demonstrates a generalized **multi-axis quantum teleportation protocol** using different combinations of projective measurements beyond the standard $Z$-basis. Each notebook simulates and visualizes the teleportation process with a specific basis pair on the message $\ket{Msg}$ and ancilla qubits $\ket{A}$.
 
 <p align="center"> <img src="assets/demo.gif" width="700"/> </p>
 
